@@ -4,6 +4,8 @@ import (
 	"database/sql"
 	"fmt"
 	"log"
+
+	_ "github.com/denisenkom/go-mssqldb"
 )
 
 func RunSQLScript(database, execSP, dbPassword, dbServer, dbUser string) {
