@@ -9,9 +9,7 @@ import (
 )
 
 func RunSQLScript(database, execSP, dbPassword, dbServer, dbUser string) {
-
-	fullConnString := fmt.Sprintf("server=%s;user id=%s;password=%s;database=%s", dbServer, dbUser, dbPassword, database)
-
+	fullConnString := SQLdBString(dbServer, dbUser, dbPassword, database)
 	conn, err := sql.Open("mssql", fullConnString)
 	if err != nil {
 		log.Fatal("Open connection failed:", err.Error())
@@ -22,4 +20,8 @@ func RunSQLScript(database, execSP, dbPassword, dbServer, dbUser string) {
 		log.Fatal("Open connection failed:", err.Error())
 	}
 	fmt.Println(res)
+}
+
+func SQLdBString(srvr, usr, pwd, db string) string {
+	return fmt.Sprintf("server=%s;user id=%s;password=%s;database=%s", srvr, usr, pwd, db)
 }
